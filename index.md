@@ -36,19 +36,21 @@ The CU course description lists the following prerequisites:
 
 A course in data structures is helpful for sections 03, H03 and V03 but not essential.
 
-Java is an excellent language for learning algorithms, data structures and programming fundamentals. Sections 03,
+Java is an excellent language for learning algorithms, data structures and programming fundamentals. Python, however, is
+becoming the dominant language and toolset for database centric applications. Sections 03,
 H03 and V03 will use Python for examples. Python is recommended for homework assignments and exams.
 
 ## Sections and Registration
 
-There are 3 sections for Spring 2019, _COMS W4111 - Introduction to Databases_,
-sections 03, H03 and V03.
+There are 3 sections for Fall 2019, _COMS W4111 - Introduction to Databases_,
+sections 02, H02 and V02.
 The three sections __cover the same material, have the same homework assignments and exams, 
 have the same office hours and
 have the same teaching assistants/course assistants.__ 
 
-Section 03 is the "classic," in-person lecture format. H03 is a "hybrid section."
-Students do not need to attend the lecture and can watch recordings of the lectures. V03 is via the [Columbia Video
+Section 02 is the "classic," in-person lecture format. H02 is a "hybrid section."
+Students do not need to attend the lecture and can watch recordings of the lectures. 
+V03 is via the [Columbia Video
 Network.](https://cvn.columbia.edu/) Schools and departments have policies about elibility for the various sections,
 enrollment authorization and waitlist management. Jessica Rosa in the CS department manages the enrollment and
 waitlist. Please contact Jessica if you have questions. 
@@ -96,28 +98,14 @@ This calendar has the office hours for the professor and instruction assistants.
 
 ## Lecture Material
 
-Lectures are Thursdays from 7:00 PM to 9:30 PM. Each session is the equivalent of two lectures. Lecture material
+Lecture material
 is below. Lecture material will typically be some combination of
-[iPython/Jupyter Notebook,](https://jupyter.org/) HTML version of the
+[iPython/Jupyter Notebook,](https://jupyter.org/), HTML version of the
 notebook and/or PDF of a PowerPoint presentation.
 
-- Lectures 1 and 2:
-    - Lecture 1: _Introduction and Overview_
-        - [HTML](Lectures/Lecture_1/w4111-L1-s2019-Introduction.html)
-        - [iPython/Jupyter Notebook](Lectures/Lecture_1/w4111-L1-s2019-Introduction.ipynb)
-    - Lecture 2: _Relational Model_
-        - [HTML](Lectures/Lecture_2/w4111-L2-s2019-ModelRelational-V2.html)
-        - [iPython/Jupyter Notebook](Lectures/Lecture_2/w4111-L2-s2019-ModelRelational-V2.ipynb)
-    - Lecture 3: _Relational Model Continued_
-        - [HTML](Lectures/Lecture_3/w4111-L3-s2019-SQLDetailsAndWeb-V2.html)
-        - [iPython/Jupyter Notebook](Lectures/Lecture_3/w4111-L3-s2019-SQLDetailsAndWeb-V2.ipynb)
-    - Lecture 4: _Web Applications and Advanced Relational_
-        - [HTML](Lectures/Lecture_4/w4111-L4-s2019-WebAppAndSQL-v1.html)
-        - [iPython/Jupyter Notebook](Lectures/Lecture_4/w4111-L4-s2019-WebAppAndSQL-v1.ipynb)
-    - Lecture 5: _Advanced SQL Concepts_
-        - [HTML](Lectures/Lecture_5/w4111-L5-s2019-SQLAdvancedConcepts.html)
-        - [iPython/Jupyter Notebook](Lectures/Lecture_5/w4111-L5-s2019-SQLAdvancedConcepts.ipynb)
-    - Lecture 6: Continuing with Relational and SQL
-        - [HTML](Lectures/Lecture_6/w4111-L6-s2019-SQLAdvancedConceptsExamples.html)
-        - [iPython](Lectures/Lecture_6/w4111-L6-s2019-SQLAdvancedConceptsExamples.ipynb)
-
+- Lecture1 1: Introduction
+    - [HTML Format](Lectures/Lecture_1/w4111-L1-f2019-Introduction.html)
+    - [Jupyter Notebook Format](Lectures/Lecture_1/w4111-L1-f2019-Introduction.ipynb)
+- Lecture1 2: Databases, Connection, Introduction to Relational Model
+    - [HTML Format](Lectures/Lecture_2/w4111-L2-s2019-ModelRelational-V2.2.html)
+    - [Jupyter Notebook Format](Lectures/Lecture_2/w4111-L2-s2019-ModelRelational-V2.2.ipynb)    
