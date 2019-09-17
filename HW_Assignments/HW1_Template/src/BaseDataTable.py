@@ -5,6 +5,7 @@ from abc import ABC, abstractmethod
 
 import logging
 
+
 class BaseDataTable(ABC):
     """
     The implementation classes (XXXDataTable) for CSV database, relational, etc. will extend this
