@@ -33,8 +33,15 @@ class CSVDataTable(BaseDataTable):
             "key_columns": key_columns,
             "debug": debug
         }
-
+        dir_info = self._data["connect_info"].get("directory")
+        file_n = self._data["connect_info"].get("file_name")
         self._logger = logging.getLogger()
+
+        # Set up logger
+        logf = open('CSVDtaTable.log', 'w')
+        logging.basicConfig(stream=logf, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO)
+        logger = logging.getLogger(__name__)
+        logger.setLevel(logging.getLevelName(logging.INFO))
 
         self._logger.debug("CSVDataTable.__init__: data = " + json.dumps(self._data, indent=2))
 
@@ -93,6 +100,7 @@ class CSVDataTable(BaseDataTable):
         :return: None
         """
 
+
     @staticmethod
     def matches_template(row, template):
 
@@ -113,7 +121,13 @@ class CSVDataTable(BaseDataTable):
         :return: None, or a dictionary containing the requested fields for the record identified
             by the key.
         """
-        pass
+        tmp = dict(zip(self._data["key_columns"], key_fields))
+        result = None
+        for r in self.get_rows():
+            if self.matches_template(r, tmp):
+                result = r
+                break
+        return result
 
     def find_by_template(self, template, field_list=None, limit=None, offset=None, order_by=None):
         """
@@ -126,7 +140,14 @@ class CSVDataTable(BaseDataTable):
         :return: A list containing dictionaries. A dictionary is in the list representing each record
             that matches the template. The dictionary only contains the requested fields.
         """
-        pass
+        result = []
+        for r in self.get_rows():
+            if self.matches_template(r, template):
+                result.append(r)
+        filtered_result = []
+        for record in result:
+            filtered_result.append({key: value for (key, value) in record.items() if key in field_list})
+        return filtered_result
 
     def delete_by_key(self, key_fields):
         """
@@ -136,7 +157,10 @@ class CSVDataTable(BaseDataTable):
         :param template: A template.
         :return: A count of the rows deleted.
         """
-        pass
+        tmp = dict(zip(self._data["key_columns"], key_fields))
+        row_to_delete = self.find_by_template(tmp)
+        self._rows = [r for r in self._rows if r not in row_to_delete]
+        return len(row_to_delete)
 
     def delete_by_template(self, template):
         """
@@ -144,7 +168,9 @@ class CSVDataTable(BaseDataTable):
         :param template: Template to determine rows to delete.
         :return: Number of rows deleted.
         """
-        pass
+        row_to_delete = self.find_by_template(template)
+        self._rows = [r for r in self._rows if r not in row_to_delete]
+        return len(row_to_delete)
 
     def update_by_key(self, key_fields, new_values):
         """
@@ -153,6 +179,8 @@ class CSVDataTable(BaseDataTable):
         :param new_values: A dict of field:value to set for updated row.
         :return: Number of rows updated.
         """
+        tmp = dict(zip(self._data["key_columns"], key_fields))
+        return self.update_by_template(tmp, new_values)
 
     def update_by_template(self, template, new_values):
         """
@@ -161,7 +189,20 @@ class CSVDataTable(BaseDataTable):
         :param new_values: New values to set for matching fields.
         :return: Number of rows updated.
         """
-        pass
+        cnt = 0
+        for ith in range(len(self._rows)):
+            row = self._rows[ith]
+            if self.matches_template(row, template):
+                for key, value in new_values.items():
+                    row[key] = value
+                key_values = [v for (k, v) in row.items() if k in self._data["key_columns"]]
+                if not self.find_by_primary_key(key_values):
+                    self._logger.warn("Duplicate primary keys appears after updating")
+                else:
+                    self._rows[ith] = row
+                    cnt += 1
+
+        return cnt
 
     def insert(self, new_record):
         """
@@ -169,7 +210,8 @@ class CSVDataTable(BaseDataTable):
         :param new_record: A dictionary representing a row to add to the set of records.
         :return: None
         """
-        pass
+        self._add_row(new_record)
+        return None
 
     def get_rows(self):
         return self._rows
