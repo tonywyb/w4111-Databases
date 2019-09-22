@@ -90,6 +90,9 @@ class CSVDataTable(BaseDataTable):
         with open(full_name, "r") as txt_file:
             csv_d_rdr = csv.DictReader(txt_file)
             for r in csv_d_rdr:
+                cols = self._data.get("columns", None)
+                if cols is None:
+                    self._data["columns"] = r.keys()
                 self._add_row(r)
 
         self._logger.debug("CSVDataTable._load: Loaded " + str(len(self._rows)) + " rows")
@@ -99,6 +102,16 @@ class CSVDataTable(BaseDataTable):
         Write the information back to a file.
         :return: None
         """
+
+    def _validate_template_and_fields(self, tmp, fields):
+
+        c_set = set(self._data["columns"])
+        t_set = set(tmp) if tmp is not None else None
+        f_set = set(fields) if fields is not None else None
+        if f_set is not None and not f_set.issubset(c_set):
+            raise DataTableException(DataTableException.invalid_input, "Fields are invalid")
+        if t_set is not None and not t_set.issubset(c_set):
+            raise DataTableException(DataTableException.invalid_input, "Fields are invalid")
 
 
     @staticmethod
@@ -197,7 +210,7 @@ class CSVDataTable(BaseDataTable):
                     row[key] = value
                 key_values = [v for (k, v) in row.items() if k in self._data["key_columns"]]
                 if not self.find_by_primary_key(key_values):
-                    self._logger.warn("Duplicate primary keys appears after updating")
+                    self._logger.warnning("Duplicate primary keys appears after updating")
                 else:
                     self._rows[ith] = row
                     cnt += 1
@@ -208,8 +221,27 @@ class CSVDataTable(BaseDataTable):
         """
 
         :param new_record: A dictionary representing a row to add to the set of records.
-        :return: None
+        :return: None (Number of rows inserted)
         """
+        if new_record is None:
+            raise ValueError("You are a twit.")
+        new_cols = new_record.keys()
+        tbl_cols = set(self._data["columns"])
+        if not new_cols.issubset(tbl_cols): # check schema
+            raise ValueError("")
+        key_cols = self._data.get("key_columns", None) # check if has a primary key
+        if key_cols is not None:
+            key_cols = set(key_cols)
+            if not key_cols.issubset(new_cols):
+                raise ValueError("....")
+            for k in key_cols:
+                if new_record.get(k, None) is None:
+                    raise ValueError("...")
+
+            key_tmp = self.get_key_template(new_record) # give a record, get a primary key
+            if self.find_by_template(key_tmp) is not None and len(self.find_by_template(key_tmp)) > 0:
+                raise ValueError("")
+
         self._add_row(new_record)
         return None
 
