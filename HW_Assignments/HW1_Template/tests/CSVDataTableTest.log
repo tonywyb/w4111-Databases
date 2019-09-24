@@ -1,0 +1,51 @@
+2019-09-23 22:06:03,531 - root - DEBUG - CSVDataTable.__init__: data = {
+  "table_name": "people",
+  "connect_info": {
+    "directory": "/Users/wangyanbin/Desktop/w4111-Databases/HW_Assignments/HW1_Template/Data/Baseball",
+    "file_name": "People.csv"
+  },
+  "key_columns": [
+    "playerID"
+  ],
+  "debug": true
+}
+2019-09-23 22:06:03,861 - root - DEBUG - CSVDataTable._load: Loaded 19617 rows
+2019-09-23 22:06:03,894 - root - DEBUG - CSVDataTable.__init__: data = {
+  "table_name": "people",
+  "connect_info": {
+    "directory": "/Users/wangyanbin/Desktop/w4111-Databases/HW_Assignments/HW1_Template/Data/Baseball",
+    "file_name": "People.csv"
+  },
+  "key_columns": [
+    "playerID"
+  ],
+  "debug": true
+}
+2019-09-23 22:06:04,238 - root - DEBUG - CSVDataTable._load: Loaded 19617 rows
+2019-09-23 22:06:04,290 - root - DEBUG - CSVDataTable.__init__: data = {
+  "table_name": "batting",
+  "connect_info": {
+    "directory": "/Users/wangyanbin/Desktop/w4111-Databases/HW_Assignments/HW1_Template/Data/Baseball",
+    "file_name": "Batting.csv"
+  },
+  "key_columns": [
+    "playerID",
+    "teamID",
+    "yearID",
+    "stint"
+  ],
+  "debug": true
+}
+2019-09-23 22:06:06,305 - root - DEBUG - CSVDataTable._load: Loaded 105861 rows
+2019-09-23 22:06:06,633 - root - DEBUG - CSVDataTable.__init__: data = {
+  "table_name": "People",
+  "connect_info": {
+    "directory": "/Users/wangyanbin/Desktop/w4111-Databases/HW_Assignments/HW1_Template/Data/Baseball",
+    "file_name": "People.csv"
+  },
+  "key_columns": [
+    "playerID"
+  ],
+  "debug": true
+}
+2019-09-23 22:06:06,971 - root - DEBUG - CSVDataTable._load: Loaded 19617 rows

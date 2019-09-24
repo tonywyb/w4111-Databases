@@ -70,6 +70,7 @@ def run_q(sql, args=None, fetch=True, cur=None, conn=None, commit=True):
             conn.commit()
 
     except Exception as e:
+        conn.rollback()
         raise(e)
 
     return (res, data)
@@ -176,6 +177,23 @@ def create_update(table_name, new_values, template):
     args.extend(w_args)
 
     sql = "update " + table_name + " set " + s_clause + " "+ w_clause
+
+    return sql, args
+
+
+def create_delete(table_name, template):
+
+    """
+
+    :param table_name: A table name, which may be fully qualified.
+    :param new_values: A dictionary containing cols and the new values.
+    :param template: A template to form the where clause.
+    :return: An update statement template and args.
+    """
+
+    w_clause, args = template_to_where_clause(template)
+
+    sql = "delete from " + table_name + " " + w_clause
 
     return sql, args
 

@@ -1,0 +1,51 @@
+/usr/local/bin/python3.6 /Users/wangyanbin/Desktop/w4111-Databases/HW_Assignments/HW1_Template/tests/rdb_table_tests.py
+RDB table = <HW_Assignments.HW1_Template.src.RDBDataTable.RDBDataTable object at 0x10dc7d7f0>
+Res = [
+  {
+    "playerID": "willite01",
+    "nameLast": "Williams",
+    "nameFirst": "Ted",
+    "birthYear": "1918"
+  },
+  {
+    "playerID": "willitr01",
+    "nameLast": "Williams",
+    "nameFirst": "Trevor",
+    "birthYear": "1992"
+  }
+]
+Res = [
+  {
+    "playerID": "willite01",
+    "yearID": "1960",
+    "teamID": "BOS",
+    "stint": "1",
+    "H": 98,
+    "AB": 310
+  }
+]
+Testing find by template...
+Result of find by template = [{'playerID': 'beckri01', 'birthCity': 'Pasco', 'deathYear': ''}, {'playerID': 'faulbi01', 'birthCity': 'Cincinnati', 'deathYear': '2002'}, {'playerID': 'fosnoje01', 'birthCity': 'Deshler', 'deathYear': ''}, {'playerID': 'gallado01', 'birthCity': 'Fremont', 'deathYear': '2017'}, {'playerID': 'mccrato01', 'birthCity': 'Malvern', 'deathYear': ''}, {'playerID': 'menkede01', 'birthCity': 'Bancroft', 'deathYear': ''}]. Find by template test end.
+Testing update by template, new values are {'deathYear': '2000', 'birthCity': 'Mars'}
+Result of update by template = 1.
+Testing find by template again...
+Result of find by template = [{'playerID': 'beckri01', 'birthCity': 'Pasco', 'deathYear': ''}, {'playerID': 'faulbi01', 'birthCity': 'Mars', 'deathYear': '2000'}, {'playerID': 'fosnoje01', 'birthCity': 'Deshler', 'deathYear': ''}, {'playerID': 'gallado01', 'birthCity': 'Fremont', 'deathYear': '2017'}, {'playerID': 'mccrato01', 'birthCity': 'Malvern', 'deathYear': ''}, {'playerID': 'menkede01', 'birthCity': 'Bancroft', 'deathYear': ''}]. Update by template test end.
+Testing delete by template...
+Result of delete by template = 1.
+Testing find by template again...
+Result of find by template = [{'playerID': 'beckri01', 'birthCity': 'Pasco', 'deathYear': ''}, {'playerID': 'fosnoje01', 'birthCity': 'Deshler', 'deathYear': ''}, {'playerID': 'gallado01', 'birthCity': 'Fremont', 'deathYear': '2017'}, {'playerID': 'mccrato01', 'birthCity': 'Malvern', 'deathYear': ''}, {'playerID': 'menkede01', 'birthCity': 'Bancroft', 'deathYear': ''}]. Delete by template test end.
+Row to insert= {'playerID': 'dff9', 'nameLast': 'Wang', 'nameFirst': 'Yanbin', 'weight': '150'}
+Testing find by primary key...
+Result of find by primary key = (). Find by primary key test end.
+Doing insert ...
+Testing find by primary key again...
+Result of find by primary key = [{'playerID': 'dff9', 'birthYear': None, 'birthMonth': None, 'birthDay': None, 'birthCountry': None, 'birthState': None, 'birthCity': None, 'deathYear': None, 'deathMonth': None, 'deathDay': None, 'deathCountry': None, 'deathState': None, 'deathCity': None, 'nameFirst': 'Yanbin', 'nameLast': 'Wang', 'nameGiven': None, 'weight': 150, 'height': None, 'bats': None, 'throws': None, 'debut': None, 'finalGame': None, 'retroID': None, 'bbrefID': None}]. Insert test end.
+Testing delete by key...
+Result of delete by key = 1.
+Testing Find again...
+Result after delete = (). Delete by key test end.
+Testing update by key, new values={'nameLast': 'Boink', 'birthCountry': 'Mars'}
+Testing Find again...
+Result after update by key = (). Update by key test end.
+
+Process finished with exit code 0
