@@ -22,6 +22,7 @@ def test_create():
     }
     r_dbt = RDBDataTable(table_name="People", connect_info=c_info, key_columns=["playerID"])
     print("RDB table =", r_dbt)
+    r_dbt.close_connection()
 
 
 def test_find_by_template():
@@ -38,6 +39,7 @@ def test_find_by_template():
     res = r_dbt.find_by_template({"nameLast": "Williams", "birthCity": "San Diego"},
                                  field_list=["playerID", "nameLast", "nameFirst", "birthYear"])
     print("Res =", json.dumps(res, indent=2))
+    r_dbt.close_connection()
 
 
 def test_find_by_primary_key():
@@ -55,6 +57,7 @@ def test_find_by_primary_key():
     res = r_dbt.find_by_primary_key(key_fields=["willite01", "BOS", "1960", "1"],
                                  field_list=["playerID", "yearID", "teamID", "stint", "H", "AB"])
     print("Res =", json.dumps(res, indent=2))
+    r_dbt.close_connection()
 
 
 def final_test():
@@ -120,6 +123,7 @@ def final_test():
     print("Testing Find again...")
     res = r_dbt.find_by_primary_key({"playerID": "dff9"})
     print("Result after update by key = {}. Update by key test end.".format(res))
+    r_dbt.close_connection()
 
 
 test_create()
