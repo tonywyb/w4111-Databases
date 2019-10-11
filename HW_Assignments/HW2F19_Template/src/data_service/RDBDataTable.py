@@ -18,7 +18,7 @@ import pymysql
 import json
 
 # The helper functions from homework 1 are in this file. The RDBDataTable code below calls the functions.
-import HW_Assignments.HW2F19_Template.src.data_service.dbutils as dbutils
+import src.data_service.dbutils as dbutils
 
 # You do not need to do anything about the logging stuff. You can just ignore, or you can use if you want.
 import logging

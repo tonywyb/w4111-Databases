@@ -14,7 +14,7 @@
 from flask import Flask, Response, request
 from datetime import datetime
 import json
-import HW_Assignments.HW2F19_Template.src.data_service.data_table_adaptor as dta
+import src.data_service.data_table_adaptor as dta
 
 import logging
 logging.basicConfig(level=logging.DEBUG)
