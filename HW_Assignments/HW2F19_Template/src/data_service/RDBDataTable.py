@@ -126,15 +126,23 @@ class RDBDataTable():
         :return: Returns the count of the number of rows in the table.
         """
 
-        # -- TO IMPLEMENT --
+        q = "select count(*) from " + self._full_table_name
+        _, self._row_count = dbutils.run_q(q, conn=self._cnx)
+        return self._row_count[0]['count(*)']
 
     def get_primary_key_columns(self):
         """
 
         :return: A list of the primary key columns ordered by their position in the key.
         """
-
-        # -- TO IMPLEMENT --
+        # q = "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = '" + self._db_name + \
+        #     "' AND TABLE_NAME = '" + self._table_name + "' AND COLUMN_KEY = 'PRI'"
+        q = "SHOW KEYS FROM " + self._full_table_name + " WHERE Key_name = 'PRIMARY'"
+        _, key_columns_lis = dbutils.run_q(q, conn=self._cnx)
+        self._key_columns = []
+        for k in key_columns_lis:
+            self._key_columns.append(k["Column_name"])
+        return self._key_columns
 
         # Hint. Google "get primary key columns mysql"
         # Hint. THE ORDER OF THE COLUMNS IN THE KEY DEFINITION MATTERS.

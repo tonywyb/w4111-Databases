@@ -188,7 +188,11 @@ def dbs():
     # Your code  goes here.
 
     # Hint: Implement the function in data_table_adaptor
-    #
+    inputs = log_and_extract_input(demo, None)
+    res = dta.get_databases()
+    rsp = Response(json.dumps(res, default=str), status=200, content_type="application/json")
+    return rsp
+
 
 
 
@@ -202,7 +206,9 @@ def tbls(dbname):
 
     inputs = log_and_extract_input(dbs, None)
 
-    # Your code  goes here.
+    res = dta.get_tables(dbname)
+    rsp = Response(json.dumps(res, default=str), status=200, content_type="application/json")
+    return rsp
 
     # Hint: Implement the function in data_table_adaptor
     #
@@ -224,32 +230,31 @@ def resource_by_id(dbname, resource, primary_key):
         # Parse the incoming request into an application specific format.
         context = log_and_extract_input(resource_by_id, (dbname, resource, primary_key))
 
-        #
-        # SOME CODE GOES HERE
-        #
-        # -- TO IMPLEMENT --
-
         if request.method == 'GET':
 
-            #
-            # SOME CODE GOES HERE
-            #
-            # -- TO IMPLEMENT --
-            pass
+            fields = context.get("fields", None)
+            r_table = dta.get_rdb_table(resource, dbname)
+            key = primary_key.split(_key_delimiter)
+            res = r_table.find_by_primary_key(key, field_list=fields)
+            rsp = Response(json.dumps(res, default=str), status=200, content_type="application/json")
+            return rsp
 
         elif request.method == 'DELETE':
-            #
-            # SOME CODE GOES HERE
-            #
-            # -- TO IMPLEMENT --
-            pass
+
+            r_table = dta.get_rdb_table(resource, dbname)
+            key = primary_key.split(_key_delimiter)
+            res = r_table.delete_by_key(key)
+            rsp = Response(json.dumps(res, default=str), status=200, content_type="application/json")
+            return rsp
 
         elif request.method == 'PUT':
-            #
-            # SOME CODE GOES HERE
-            #
-            # -- TO IMPLEMENT --
-            pass
+
+            new_values = context.get("body", None)
+            r_table = dta.get_rdb_table(resource, dbname)
+            key = primary_key.split(_key_delimiter)
+            res = r_table.update_by_key(key, new_values=new_values)
+            rsp = Response(json.dumps(res, default=str), status=200, content_type="application/json")
+            return rsp
 
     except Exception as e:
         print(e)
@@ -264,25 +269,20 @@ def get_resource(dbname, resource_name):
     try:
         context = log_and_extract_input(get_resource, (dbname, resource_name))
 
-        #
-        # SOME CODE GOES HERE
-        #
-        # -- TO IMPLEMENT --
-
-
         if request.method == 'GET':
-            #
-            # SOME CODE GOES HERE
-            #
-            # -- TO IMPLEMENT --
-            pass
+            fields = context.get("fields", None)
+            query_params = context.get("query_params", None)
+            r_table = dta.get_rdb_table(resource_name, dbname)
+            res = r_table.find_by_template(query_params, field_list=fields)
+            rsp = Response(json.dumps(res, default=str), status=200, content_type="application/json")
+            return rsp
 
         elif request.method == 'POST':
-            #
-            # SOME CODE GOES HERE
-            #
-            # -- TO IMPLEMENT --
-            pass
+            new_record = context.get("body", None)
+            r_table = dta.get_rdb_table(resource_name, dbname)
+            res = r_table.insert(new_record=new_record)
+            rsp = Response(json.dumps(res, default=str), status=200, content_type="application/json")
+            return rsp
         else:
             result = "Invalid request."
             return result, 400, {'Content-Type': 'text/plain; charset=utf-8'}
