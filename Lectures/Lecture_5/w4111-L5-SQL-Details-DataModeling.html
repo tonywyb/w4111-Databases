@@ -12054,7 +12054,7 @@ select T.course_id
 	from course as T where
 	( select count(R.course_id)   from section as R
 		where T.course_id= R.course_id
-			and R.year = 2017) = 0;
+			and R.year = 2017) = 1;
 </pre></div>
 
 </div>
